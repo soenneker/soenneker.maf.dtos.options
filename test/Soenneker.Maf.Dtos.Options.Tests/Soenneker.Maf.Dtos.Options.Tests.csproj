@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Soenneker.Maf.Dtos.Options.csproj" />
+        <ProjectReference Include="..\..\src\Soenneker.Maf.Dtos.Options\Soenneker.Maf.Dtos.Options.csproj" />
     </ItemGroup>
 
     <ItemGroup>
