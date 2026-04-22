@@ -38,7 +38,7 @@ jobs:
         run: dotnet build test/Soenneker.Maf.Dtos.Options.Tests/Soenneker.Maf.Dtos.Options.Tests.csproj --configuration Release --no-restore --verbosity minimal
 
       - name: Test
-        run: dotnet test test/Soenneker.Maf.Dtos.Options.Tests/Soenneker.Maf.Dtos.Options.Tests.csproj --configuration Release --no-build --no-restore --verbosity minimal
+        run: dotnet test --project test/Soenneker.Maf.Dtos.Options.Tests/Soenneker.Maf.Dtos.Options.Tests.csproj --configuration Release --no-build --no-restore --verbosity minimal
 
       - name: Pack
         run: dotnet pack src/Soenneker.Maf.Dtos.Options/Soenneker.Maf.Dtos.Options.csproj --configuration Release --no-build --no-restore --output . --verbosity minimal
