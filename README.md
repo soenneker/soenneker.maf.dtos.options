@@ -13,6 +13,24 @@ Options for creating a Microsoft Agent Framework `AIAgent` instance.
 dotnet add package Soenneker.Maf.Dtos.Options
 ```
 
+## Usage
+
+```csharp
+var options = new MafOptions
+{
+    ModelId = "my-model",
+    Endpoint = "https://api.example.com",
+    ApiKey = configuration["AI_API_KEY"],
+    RequestsPerMinute = 60,
+    MaxTokens = 1_000,
+    Temperature = 0.2,
+    AgentFactory = static (value, cancellationToken) =>
+        CreateAgentAsync(value, cancellationToken)
+};
+```
+
+`MafOptions` only carries configuration. The rate-limit and generation fields are not enforced or applied by this package; the pool, cache, agent factory, or request pipeline consuming the options must do that work.
+
 ## What you get
 
 - `MafOptions` — Options for creating a Microsoft Agent Framework `AIAgent` instance.
@@ -31,3 +49,7 @@ dotnet add package Soenneker.Maf.Dtos.Options
 | `MafOptions.TokensPerDay` | Maximum number of tokens allowed per day (input + output). Used for quota control. | Maximum number of tokens allowed per day (input + output). Used for quota control. |
 | `MafOptions.MaxTokens` | The maximum number of tokens the model is allowed to generate in a single response. | The maximum number of tokens the model is allowed to generate in a single response. |
 | `MafOptions.Temperature` | Sampling temperature (0.0 - 2.0). Higher values produce more randomness; lower values are more deterministic. | Sampling temperature (0.0 - 2.0). Higher values produce more randomness; lower values are more deterministic. |
+
+## Security
+
+`ApiKey` is serializable. Do not log or persist populated options, and prefer loading secrets from a secret provider at runtime. `AgentFactory` is excluded from JSON serialization.
